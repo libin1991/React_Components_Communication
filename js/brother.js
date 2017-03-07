@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {events, sendEvent, catchEvent} from './event'
+import {events, sendEvent, catchEvent, removeCatch} from './event'
 
 export default class Brother extends Component {
 	
@@ -17,6 +17,10 @@ export default class Brother extends Component {
 		catchEvent(events.stb, this._sisterToBrother)
 		//会造成多次引用
 //		catchEvent(events.stb, this.sisterToBrother.bind(this))
+	}
+	
+	componentWillUnmount() {
+		removeCatch(event.stb, this._sisterToBrother)
 	}
 	
 	childToParent() {

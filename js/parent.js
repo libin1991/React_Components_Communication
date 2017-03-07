@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Brother from './brother'
 import Sister from './sister'
-import {events, sendEvent, catchEvent} from './event'
+import {events, sendEvent, catchEvent, removeCatch} from './event'
 
 export default class Parent extends Component {
 	constructor() {
@@ -25,6 +25,11 @@ export default class Parent extends Component {
 //		catchEvent(events.bts, this.brotherToSister.bind(this))
 		//会造成多次引用
 //		catchEvent(events.stb, this.sisterToBrother.bind(this))
+	}
+	
+	componentWillUnmount() {
+		removeCatch(event.bts, this._brotherToSister)
+		removeCatch(events.stb, this._sisterToBrother)
 	}
 	
 	brotherToSister(e) {

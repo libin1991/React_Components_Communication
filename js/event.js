@@ -15,3 +15,7 @@ export var sendEvent = (eventName, params) => {
 export var catchEvent = (eventName, callback) => {
 	document.addEventListener(eventName, e => callback(e))
 }
+
+export var removeCatch = (eventName, callback) => {
+	document.removeEventListener(eventName, callback)
+}
